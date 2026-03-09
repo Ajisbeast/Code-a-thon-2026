@@ -393,7 +393,41 @@
 <button class="info-nav next">›</button>
 
 </section>
+<section class ="questions-form">
+    <div class="contact-container">
 
+            <h2 class="contact-title">Questions or Concerns?</h2>
+            <p class="contact-subtitle">We'd love to hear from you. Fill out the form below and we'll get back to you soon.</p>
+
+            <form id="contact-form" class="contact-form" action="#" method="POST">
+
+                <div class="form-group" id="group-name">
+                    <label class="form-label" for="name">Your Name</label>
+                    <input class="form-input" type="text" id="name" name="name" placeholder="John Smith" required />
+                </div>
+
+                <div class="form-group" id="group-email">
+                    <label class="form-label" for="email">Your Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="form-group" id="group-subject">
+                    <label class="form-label" for="subject">Subject</label>
+                    <input class="form-input" type="text" id="subject" name="subject" placeholder="What is this about?" />
+                </div>
+
+                <div class="form-group" id="group-message">
+                    <label class="form-label" for="message">Your Message</label>
+                    <textarea class="form-textarea" id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <div class="form-group" id="group-submit">
+                    <button class="form-submit-btn" type="submit">Send Message</button>
+                </div>
+
+            </form>
+        </div>
+</section>
 </main>
 
 <script>
