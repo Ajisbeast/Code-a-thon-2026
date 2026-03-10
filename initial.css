@@ -7,7 +7,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-blend-mode: darken; /* or multiply */
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Bungee', cursive;
   color:black;
   margin: 0;
 }
@@ -285,4 +285,164 @@ body h2 {
 .form-submit-btn:hover {
   background: white;
   transform: translateY(-2px);
+}
+
+/* iPhone / small mobile responsiveness */
+@media only screen and (max-width: 480px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  .hero {
+    padding-top: 5vh;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info {
+    flex-direction: column;
+    margin: 2rem auto;
+    gap: 15px;
+    min-height: auto;
+  }
+
+  .info-card {
+    flex-direction: column;      /* Stack image above text */
+    height: auto;                /* Let height adjust automatically */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .card-image {
+    flex: none;
+    width: 100%;                 /* Full width */
+    height: 180px;               /* Smaller image height */
+  }
+
+  .card-image img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-text {
+    flex: none;
+    width: 100%;
+    padding: 15px;               /* Reduce padding on mobile */
+  }
+
+  .info-track {
+    height: auto;                /* Let the track wrap properly */
+  }
+
+  .info-nav.prev,
+  .info-nav.next {
+    top: auto;
+    bottom: 10px;                /* Move arrows below carousel */
+    transform: none;
+  }
+
+  .box {
+    padding: 2rem 1.5rem 4rem;
+    margin: 2rem auto;
+  }
+
+  .questions-form {
+    padding: 40px 15px;
+  }
+
+  .contact-container {
+    padding: 30px 20px;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .form-submit-btn {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .nav-links {
+    display: none; /* hide full menu */
+  }
+
+  /* Optional: full-screen mobile menu when hamburger is clicked */
+  .nav-links.mobile-active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;           /* below top bar */
+    left: 0;
+    width: 100%;
+    background: #262624;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .nav-links.mobile-active li a {
+    font-size: 1.2rem;
+  }
+
+  /* Hide everything on the right except the hamburger */
+  .nav-right > a,
+  .nav-login {
+    display: none;
+  }
+
+  /* Keep hamburger visible */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Optional: reduce padding on nav */
+  nav {
+    padding: 0 16px;
+  }
+
+  /* Optional: adjust logo size on small screens */
+  .logo-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .logo-text {
+    font-size: 0.7rem;
+  }
+  .countdown-box:nth-child(4) {
+    display: none;
+  }
+  
+  /* Optional: center remaining boxes better */
+  .countdown-timer {
+    justify-content: center;
+    gap: 16px;
+  }
+ .hero {
+    padding-top: 3vh !important; /* pull hero section up */
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero .title h1 {
+    font-size: clamp(3rem, 8vw, 6rem) !important; /* scale nicely on small screens */
+    margin-top: 2vh !important;
+    text-align: center !important;
+    line-height: 1.1;
+  }
+
+  .hero .title h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem) !important; /* scale subtitle */
+    margin-top: 1rem !important;
+    text-align: center !important;
+  }
+
+  .title span {
+    font-size: inherit !important; /* inherit from h1 so letters scale properly */
+    line-height: 1.1;
+  }
 }
