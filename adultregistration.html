@@ -9,15 +9,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --deep:   #1a2f1e;
-      --forest: #2d5a35;
-      --gold:   #c9972b;
-      --gold-lt:#fdf6e3;
-      --bg:     #f5f2ec;
+      --deep:   #1a1f3c;
+      --forest: #2d3580;
+      --gold:   #e8b84b;
+      --gold-lt:#fdf8ed;
+      --bg:     #f2f3f8;
       --white:  #ffffff;
-      --border: #d8d0be;
-      --text:   #1a2f1e;
-      --muted:  #6b7460;
+      --border: #d0d3e8;
+      --text:   #1a1f3c;
+      --muted:  #6b6f8a;
     }
 
     body {
@@ -42,7 +42,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(15,24,18,0.72) 0%, rgba(15,24,18,0.55) 100%);
+      background: linear-gradient(to bottom, rgba(15,18,48,0.78) 0%, rgba(15,18,48,0.58) 100%);
       z-index: 0;
     }
 
@@ -251,7 +251,7 @@
       border-radius: 8px;
       padding: 32px;
       margin-bottom: 24px;
-      box-shadow: 0 2px 12px rgba(26,47,30,0.05);
+      box-shadow: 0 2px 12px rgba(26,31,60,0.05);
     }
 
     .field { margin-bottom: 20px; }
@@ -285,14 +285,14 @@
     }
 
     .field input::placeholder,
-    .field textarea::placeholder { color: #b8b0a0; }
+    .field textarea::placeholder { color: #b0b3cc; }
 
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
       border-color: var(--forest);
       background: var(--white);
-      box-shadow: 0 0 0 3px rgba(45,90,53,0.10);
+      box-shadow: 0 0 0 3px rgba(45,53,128,0.10);
     }
 
     .field select option { background: #fff; color: var(--text); }
@@ -331,14 +331,14 @@
     .toggle-group label:hover .toggle-btn {
       border-color: var(--forest);
       color: var(--forest);
-      background: #eef4ef;
+      background: #eceef8;
     }
 
     .toggle-group input[type="radio"]:checked + .toggle-btn {
       background: var(--deep);
       border-color: var(--deep);
       color: #fff;
-      box-shadow: 0 2px 8px rgba(26,47,30,0.25);
+      box-shadow: 0 2px 8px rgba(26,31,60,0.25);
     }
 
     /* Checkbox */
@@ -380,13 +380,13 @@
       font-size: 24px;
       letter-spacing: 3px;
       cursor: pointer;
-      box-shadow: 0 6px 24px rgba(26,47,30,0.28);
+      box-shadow: 0 6px 24px rgba(26,31,60,0.28);
       transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
     }
 
     .submit-btn:hover {
       background: var(--forest);
-      box-shadow: 0 8px 32px rgba(26,47,30,0.36);
+      box-shadow: 0 8px 32px rgba(26,31,60,0.36);
       transform: translateY(-2px);
     }
 
@@ -460,7 +460,7 @@
       <span class="info-lbl">Location</span>
     </div>
     <div class="info-item">
-      <span class="info-val">$20</span>
+      <span class="info-val">Free</span>
       <span class="info-lbl">Registration</span>
     </div>
     <div class="info-item">
@@ -573,13 +573,16 @@
     </div>
 
     <button class="submit-btn">Register Now</button>
-    <p class="price-note">Free Registration &mdash; registration fee</p>
+    <p class="price-note">Registration is <strong>free</strong> for adult volunteers.</p>
+    <div style="text-align:center;margin-top:20px;">
+      <a href="Index.html" style="display:inline-block;padding:12px 28px;border:2px solid var(--forest);border-radius:8px;color:var(--forest);text-decoration:none;font-size:0.9rem;font-weight:700;letter-spacing:0.05em;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--forest)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--forest)'">&#8592; Back to Home</a>
+    </div>
 
   </div>
 
   <footer>
     &copy; 2026 Family Church &nbsp;&mdash;&nbsp;
-    <a href="Code-a-thon-2026/test.html">Back to Block Party</a>
+    <a href="Index.html">Back to Block Party</a>
   </footer>
 
 </body>
