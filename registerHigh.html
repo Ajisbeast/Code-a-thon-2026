@@ -307,14 +307,14 @@
     .check-field {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .check-field input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      min-width: 18px;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
       accent-color: var(--blue);
       cursor: pointer;
       margin-top: 3px;
@@ -464,7 +464,7 @@
       </div>
       <div class="field">
         <label>Date of Birth</label>
-        <input type="date">
+        <input type="date" id="dob">
       </div>
       <div class="field">
         <label>T-Shirt Size</label>
@@ -509,19 +509,23 @@
     <p class="section-label">Medical</p>
     <div class="form-card">
       <div class="field">
-        <label>Allergies / Medical Notes <span style="letter-spacing:0;text-transform:none;font-size:11px">&mdash; optional</span></label>
-        <textarea placeholder="Any allergies, medications, or conditions we should know about..."></textarea>
+        <label>Allergies / Medical Notes</label>
+        <textarea id="allergies" placeholder="Any allergies, medications, or conditions we should know about..."></textarea>
       </div>
     </div>
 
     <p class="section-label">Confirm</p>
     <div class="form-card">
       <div class="check-field">
-        <input type="checkbox" id="waiver" required>
-        <span>I give permission for my student to attend Block Party 2025 and agree to the <a href="#">liability waiver</a>. I understand photos may be taken during the event.</span>
+        <input type="checkbox" id="waiver">
+        <span>I give permission for my child to attend Block Party 2026. I understand photos may be taken during the event and may be used by Family Church.</span>
       </div>
       <div class="check-field">
-        <input type="checkbox" id="pickup" required>
+        <input type="checkbox" id="waiver2">
+        <span>I understand that some of the associated risks include, but are not limited to sunburn, dehydration, insect bites, sports related injuries, and potentially more serious injuries or drowning resulting from participation in various watersport activities.</span>
+      </div>
+      <div class="check-field">
+        <input type="checkbox" id="pickup">
         <span>My student has permission to be released to the guardian who dropped them off at the end of the session.</span>
       </div>
     </div>
@@ -537,10 +541,11 @@
 
   <script>
     function submitForm(e) {
-      const required = ['first-name','last-name','parent-first','parent-last','parent-email','parent-phone','emergency-phone'];
-      const waiver = document.getElementById('waiver');
-      const pickup = document.getElementById('pickup');
-      const err    = document.getElementById('agree-error');
+      const required = ['first-name','last-name','dob','parent-first','parent-last','parent-email','parent-phone','emergency-phone','allergies'];
+      const waiver  = document.getElementById('waiver');
+      const waiver2 = document.getElementById('waiver2');
+      const pickup  = document.getElementById('pickup');
+      const err     = document.getElementById('agree-error');
 
       let valid = true;
 
@@ -554,15 +559,31 @@
         }
       });
 
-      if (!waiver.checked || !pickup.checked) {
+      // Validate radio groups
+      const radioGroups = [
+        { name: 'grade', label: 'Grade' },
+        { name: 'shirt', label: 'T-Shirt Size' }
+      ];
+      radioGroups.forEach(({ name }) => {
+        const checked = document.querySelector(`input[name="${name}"]:checked`);
+        const btns = document.querySelectorAll(`input[name="${name}"] + .toggle-btn`);
+        if (!checked) {
+          btns.forEach(btn => btn.style.outline = '2px solid #e23c49');
+          valid = false;
+        } else {
+          btns.forEach(btn => btn.style.outline = '');
+        }
+      });
+
+      if (!waiver.checked || !waiver2.checked || !pickup.checked) {
         err.style.display = 'block';
-        [waiver, pickup].forEach(cb => {
+        [waiver, waiver2, pickup].forEach(cb => {
           cb.style.outline = cb.checked ? '' : '2px solid #e23c49';
         });
         valid = false;
       } else {
         err.style.display = 'none';
-        [waiver, pickup].forEach(cb => cb.style.outline = '');
+        [waiver, waiver2, pickup].forEach(cb => cb.style.outline = '');
       }
 
       if (valid) window.location.href = 'post_registration.html';

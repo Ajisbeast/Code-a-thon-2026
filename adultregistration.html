@@ -498,7 +498,7 @@
         </div>
         <div class="field">
           <label>Date of Birth</label>
-          <input type="date">
+          <input type="date" id="dob">
         </div>
       </div>
       <div class="field">
@@ -543,7 +543,7 @@
         </div>
         <div class="field">
           <label>Relationship</label>
-          <input type="text" placeholder="Spouse, Friend, etc.">
+          <input type="text" id="relationship" placeholder="Spouse, Friend, etc.">
         </div>
       </div>
       <div class="field">
@@ -555,16 +555,20 @@
     <p class="section-label">Medical</p>
     <div class="form-card">
       <div class="field">
-        <label>Allergies / Medical Notes <span style="letter-spacing:0;text-transform:none;font-size:11px">&mdash; optional</span></label>
-        <textarea placeholder="Any allergies, medications, or conditions we should know about..."></textarea>
+        <label>Allergies / Medical Notes</label>
+        <textarea id="allergies" placeholder="Any allergies, medications, or conditions we should know about..."></textarea>
       </div>
     </div>
 
-    <p class="section-label">Confirm</p>
+    <p class="section-label">Liability Waiver</p>
     <div class="form-card">
       <div class="check-field">
         <input type="checkbox" id="waiver">
-        <span>I agree to the <a href="#">liability waiver</a> and acknowledge that photos may be taken during the event and used by Family Church.</span>
+        <span>I acknowledge that photos may be taken during the event and may be used by Family Church.</span>
+      </div>
+      <div class="check-field">
+        <input type="checkbox" id="waiver2">
+        <span>I understand that some of the associated risks include, but are not limited to sunburn, dehydration, insect bites, sports related injuries, and potentially more serious injuries or drowning resulting from participation in various watersport activities.</span>
       </div>
       <div class="check-field">
         <input type="checkbox" id="terms">
@@ -588,10 +592,11 @@
 
   <script>
     function submitForm(e) {
-      const required = ['first-name','last-name','email','phone','contact-name','contact-phone'];
-      const waiver = document.getElementById('waiver');
-      const terms  = document.getElementById('terms');
-      const err    = document.getElementById('agree-error');
+      const required = ['first-name','last-name','dob','email','phone','contact-name','relationship','contact-phone','allergies'];
+      const waiver  = document.getElementById('waiver');
+      const waiver2 = document.getElementById('waiver2');
+      const terms   = document.getElementById('terms');
+      const err     = document.getElementById('agree-error');
 
       let valid = true;
 
@@ -605,15 +610,25 @@
         }
       });
 
-      if (!waiver.checked || !terms.checked) {
+      // Validate shirt size radio group
+      const shirtChecked = document.querySelector('input[name="shirt"]:checked');
+      const shirtBtns = document.querySelectorAll('input[name="shirt"] + .toggle-btn');
+      if (!shirtChecked) {
+        shirtBtns.forEach(btn => btn.style.outline = '2px solid #e23c49');
+        valid = false;
+      } else {
+        shirtBtns.forEach(btn => btn.style.outline = '');
+      }
+
+      if (!waiver.checked || !waiver2.checked || !terms.checked) {
         err.style.display = 'block';
-        [waiver, terms].forEach(cb => {
+        [waiver, waiver2, terms].forEach(cb => {
           cb.style.outline = cb.checked ? '' : '2px solid #e23c49';
         });
         valid = false;
       } else {
         err.style.display = 'none';
-        [waiver, terms].forEach(cb => cb.style.outline = '');
+        [waiver, waiver2, terms].forEach(cb => cb.style.outline = '');
       }
 
       if (valid) window.location.href = 'post_registration.html';
