@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code a thon</title>
 <link rel="stylesheet" href="initial.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
 </head>
     <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -222,6 +223,52 @@
     }
 
     .submenu li a:hover { color: #1a3a5c; background: #edf2f7; }
+
+    /* ── Countdown ── */
+    .countdown-section {
+      text-align: center;
+      padding: 60px 20px 40px;
+      color: white;
+    }
+
+    .countdown-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: white;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .countdown-timer {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .countdown-box {
+      background: #181819;
+      border-radius: 12px;
+      padding: 20px 28px;
+      min-width: 90px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .countdown-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: #ffcc00;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      color: #59cdfe;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
@@ -331,7 +378,28 @@
   </div>
 </section>
 
-
+<!-- Countdown -->
+<div class="countdown-section">
+  <h2>Countdown the days left until the most fun event of the year!</h2>
+  <div class="countdown-timer">
+    <div class="countdown-box">
+      <div class="countdown-number" id="days">00</div>
+      <div class="countdown-label">DAYS</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-number" id="hours">00</div>
+      <div class="countdown-label">HOURS</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-number" id="minutes">00</div>
+      <div class="countdown-label">MINUTES</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-number" id="seconds">00</div>
+      <div class="countdown-label">SECONDS</div>
+    </div>
+  </div>
+</div>
 
 <!-- Add content sections with class="box"-->
 <section class="box">
@@ -459,6 +527,18 @@ function showCard(index) {
 
 prevButton.addEventListener("click", () => showCard(current - 1));
 nextButton.addEventListener("click", () => showCard(current + 1));
+
+// Countdown
+const eventDate = new Date("October 5, 2026 09:00:00");
+function updateCountdown() {
+  const diff = eventDate - new Date();
+  document.getElementById("days").textContent    = Math.floor(diff / (1000 * 60 * 60 * 24));
+  document.getElementById("hours").textContent   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById("minutes").textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById("seconds").textContent = Math.floor((diff % (1000 * 60)) / 1000);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 </script>
 
