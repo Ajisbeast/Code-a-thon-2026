@@ -7,7 +7,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-blend-mode: darken; /* or multiply */
-  font-family: 'Bungee', cursive;
+  font-family: Ariel, Helvetica, sans-serif;
   color:black;
   margin: 0;
 }
